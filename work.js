@@ -13,49 +13,44 @@ class CountdownTimer {
         this.targetDate = targetDate;
         this.timerId = null;
     }
-    
+
 
     start() {
         const startDate = this.targetDate;
 
-        // const timer_1 = document.querySelector(this.selector);
-        // const day = timer_1.querySelector('[data-value="days"]');
-        // const hour = timer_1.querySelector('[data-value="hours"]');
-        // const min = timer_1.querySelector('[data-value="mins"]');
-        // const sec = timer_1.querySelector('[data-value="secs"]');
+        const timer_1 = document.querySelector(this.selector);
 
-        // let timerId = null;
+        const refs = {
+            day: timer_1.querySelector('[data-value="days"]'),
+            hour: timer_1.querySelector('[data-value="hours"]'),
+            min: timer_1.querySelector('[data-value="mins"]'),
+            sec: timer_1.querySelector('[data-value="secs"]'),
+        }
 
         this.timerId = setInterval(() => {
             const currentDate = Date.now();
             const timeDiff = startDate - currentDate;
             const { days, hours, mins, secs } = getDateComponents(timeDiff);
-
-            const timer_1 = document.querySelector(this.selector);
-            const day = timer_1.querySelector('[data-value="days"]');
-            day.textContent = days;
-            const hour = timer_1.querySelector('[data-value="hours"]');
-            hour.textContent = hours;
-            const min = timer_1.querySelector('[data-value="mins"]');
-            min.textContent = mins;
-            const sec = timer_1.querySelector('[data-value="secs"]');
-            sec.textContent = secs;         
+        
+            refs.day.textContent = days;
+            refs.hour.textContent = hours;
+            refs.min.textContent = mins;
+            refs.sec.textContent = secs;         
           
            if (timeDiff <= 0) {
                clearInterval(this.timerId);
                timer_1.textContent = 'Акция завершена :(';
-        };
+            };
        }, 1000);
-        
-          
-       
+ 
     };
 
 };
 
 const countdown = new CountdownTimer({
   selector: '#timer-1',
-  targetDate: new Date('May 26, 2021, 20:15:00'),
+  targetDate: new Date('May 29, 2021, 21:54:00'),
 });
 
 countdown.start();
+
